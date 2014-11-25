@@ -5,3 +5,7 @@
 # Except source code under src/ folder
 !/src/
 !src/*
+
+# ... and licenses
+!LICENSE
+!jgraphx_LICENSE
