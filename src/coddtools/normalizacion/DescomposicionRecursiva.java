@@ -24,7 +24,7 @@
 
 package coddtools.normalizacion;
 
-import coddtools.normalizacion.util.Conjunto;
+import coddtools.util.Conjunto;
 
 /**
  * Descompone una relación de forma recursiva, hasta obtener las relaciones hijas deseadas

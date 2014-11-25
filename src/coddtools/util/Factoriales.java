@@ -1,5 +1,4 @@
 /*
-
  * The MIT License
  *
  * Copyright 2014 victor.
@@ -23,21 +22,56 @@
  * THE SOFTWARE.
  */
 
-package coddtools.normalizacion.util;
+package coddtools.util;
 
 /**
- * Esta clase de utilidad permite obtener los nombres de las relaciones hijas obtenidas
- * por descomposición de una relación padre. (a partir del nombre del padre).
- * Si el nombre es "A", los nombres obtenidos serán A.1, A.2, A.3, A.4, ... A.N, y consecuentemente
- * los nombres de los nietos serán A.1.1, A.1.2, ...
+ * Clase con utilidades para trabajar con factoriales.
  * @author victor
  */
-public class SolucionadorNombres {
-    public static Conjunto<String> descomponerNombre(String padre, int numeroHijos) 
+public class Factoriales {
+    /**
+     * Calcula el factorial de un número.
+     * @param n Número mayor o igual que 0.
+     * @return Devuelve n!
+     */
+    public static long calcularFactorial(int n)
     {
-        Conjunto<String> hijos = new Conjunto<String>();
-        for(int i = 1; i <= numeroHijos; ++i)
-            hijos.insertar(padre + "." + Integer.toString(i));
-        return hijos;
+        long r = 1;
+        while(n > 1)
+            r *= n--;
+        return r;
+    }
+    
+    /**
+     * Calcula la división entre dos factoriales.
+     * @param n
+     * @param m
+     * n debe ser mayor o igual que m.
+     * @return Devuelve n! / m!
+     */
+    public static long calcularDivisionFactorial(int n, int m)
+    {
+        long r = 1;
+        int q = 0;
+        while (q < (n - m))
+            r *= (n - q++);
+        return r;
+    }
+    
+    /**
+     * Calcula un coeficiente binomial (m k)
+     * m, k deben ser mayores o iguales que 0, y además, m >= k.
+     * @return Devuelve el coeficiente binomial (m k)
+     */
+    public static long calcularCoeficienteBinomial(int m, int k)
+    {
+        long r = 1;
+        int s = 0; 
+        while(s < k)
+        {
+            r *= ((m - s) / (s + 1));
+            s++;
+        }
+        return r;
     }
 }

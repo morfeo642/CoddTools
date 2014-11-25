@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package coddtools.normalizacion.util;
+package coddtools.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;

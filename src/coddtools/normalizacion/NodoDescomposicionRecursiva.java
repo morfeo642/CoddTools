@@ -24,7 +24,7 @@
 
 package coddtools.normalizacion;
 
-import coddtools.normalizacion.util.Conjunto;
+import coddtools.util.Conjunto;
 
 /**
  * Representa el nodo de un árbol que es generado al descomponer de forma recursiva una

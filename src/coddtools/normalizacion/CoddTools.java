@@ -6,7 +6,7 @@
 
 package coddtools.normalizacion;
 
-import coddtools.normalizacion.util.Conjunto;
+import coddtools.util.Conjunto;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

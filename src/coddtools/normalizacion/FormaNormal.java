@@ -24,8 +24,7 @@
 
 package coddtools.normalizacion;
 
-import coddtools.normalizacion.util.Conjunto;
-import coddtools.normalizacion.util.SolucionadorNombres;
+import coddtools.util.Conjunto;
 import java.util.Iterator;
 
 

@@ -24,8 +24,8 @@
 
 package coddtools.normalizacion;
 
-import coddtools.normalizacion.util.Combinaciones;
-import coddtools.normalizacion.util.Conjunto;
+import coddtools.util.Combinaciones;
+import coddtools.util.Conjunto;
 import java.util.Iterator;
 
 /**

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package coddtools.normalizacion.util;
+package coddtools.util;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
