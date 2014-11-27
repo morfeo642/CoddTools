@@ -290,7 +290,7 @@ public class Conjunto<E> implements Iterable<E>
             E atr = it.next();
             while(it.hasNext())
             {
-                aux += atr + ", ";
+                aux += atr + ",";
                 atr = it.next();
             }
             aux += atr;

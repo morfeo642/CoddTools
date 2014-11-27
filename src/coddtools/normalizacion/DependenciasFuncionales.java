@@ -298,4 +298,26 @@ public class DependenciasFuncionales extends Conjunto<DependenciaFuncional>{
         }
         return aux;
     }
+    
+    /**
+     * 
+     * @return Devuelve el conjunto de dependencias funcionales reprsentado por la
+     * cadena de caracteres tomada como parámetro. La cadena de caracteres debe
+     * tener la siguiente estructura:
+     * X1 -> Y1; X2 -> Y2; X3 -> Y3; ... ;XN -> YN
+     * Donde Xi, Yi son descriptores válidos. Las dependencias funcionales se separan 
+     * mediante ; Se ignoran los espacios que puedan existir entre una dependencia funcional y 
+     * otra, y entre el separador. 
+     * Son válidos: X1 -> Y1  ;X2 -> Y2 , o X1 -> Y1  ;  X2 -> Y2
+     * @throws IllegalArgumentException Si la cadena no puede ser convertida a un conjunto de
+     * dependencias funcionales (no tiene un formato válido)
+     */
+    public static DependenciasFuncionales fromString(String str) throws IllegalArgumentException
+    {
+        String[] tokens = str.split(";");
+        DependenciasFuncionales dfs = new DependenciasFuncionales();
+        for(String token : tokens)
+            dfs.insertar(DependenciaFuncional.fromString(token));
+        return dfs;
+    }
 }
