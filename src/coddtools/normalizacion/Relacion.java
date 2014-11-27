@@ -27,6 +27,8 @@ package coddtools.normalizacion;
 import coddtools.util.Combinaciones;
 import coddtools.util.Conjunto;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Representa una relación R(A, F); Posee un conjunto de dependencias funcionales,
@@ -240,6 +242,74 @@ public class Relacion implements Comparable<Relacion> {
     public String toString()
     {
         return obtenerNombre() + "({" + obtenerAtributos() + "}, {" + obtenerDependenciasFuncionales() + "})";
+    }
+    
+    /**
+     * Convierte una cadena de caracteres en una relación, con sus atributos y dependencias
+     * funcionales. 
+     * La sintaxis es la siguiente: nombre({A1, A2, ..., An}, {X1 -> Y1; X2 -> Y2; ... ; Xm -> Ym}) 
+     * Donde nombre, es el nombre que se le quiere indicar a la relación. 
+     * El nombre de la relación, como los atributos de relación y los descriptores de las
+     * dependencias funcionales, podrán contener los siguientes caracteres: 
+     * _,@,%,$
+     * (A-Z,a-z,0-9,_)
+     * Los elementos A1, A2, ..., An son los atributos de la relación, y
+     * X1 -> Y1, X2 -> Y2, ..., es el conjunto de dependencias funcionales de la misma.
+     * 
+     * @param str
+     * @return Devuelve la relación cuya representación en formato de cadena de caracteres es la
+     * indicada como parámetro.
+     * @throws IllegalArgumentException Lanza esta excepción si el formato de la cadena de caracteres
+     * no es correcto.
+     */
+    public static Relacion fromString(String str) throws IllegalArgumentException
+    {
+        
+        if(!str.matches("[ ]*[A-Z,a-z,0-9,_,,@,$,%]+[ ]*(.+)"))
+            throw new IllegalArgumentException();
+        String parentesisIzq, parentesisDer;
+        parentesisIzq = Pattern.quote("(");
+        parentesisDer = Pattern.quote(")");
+        
+        Pattern pattern = Pattern.compile("[ ]*([^ ]+)[ ]*" + parentesisIzq + "([^" + parentesisDer + "]+)" + parentesisDer);
+        Matcher matcher = pattern.matcher(str);
+        if(!matcher.find())
+            throw new IllegalArgumentException();
+        String desc = matcher.group(2);
+        String nombre = matcher.group(1);
+        
+        /* ahora, deberemos extraer los atributos y el conjunto de dependencias funcionales
+        indicado dentro de la descripción. (texto entre parentesis).
+        */
+        String bracketIzq = Pattern.quote("{");
+        String bracketDer = Pattern.quote("}");
+        String patronConjunto = bracketIzq + "([^" + bracketDer + "]*)"  + bracketDer;
+        pattern = Pattern.compile(patronConjunto + "[ ]*,[ ]*" + patronConjunto);
+        matcher = pattern.matcher(desc);
+        String grupoAtributos, grupoDfs;
+        
+                
+        if(!matcher.find())
+            throw new IllegalArgumentException();
+        
+        try {  
+            grupoAtributos = matcher.group(1);
+            
+        }catch(IllegalStateException e) { 
+            grupoAtributos = "";
+        }
+        try { 
+            grupoDfs = matcher.group(2);
+        }catch(IllegalStateException e) { 
+            grupoDfs = "";
+        }
+        
+        
+        /* Discretizamos los atributos de la relación y sus dependencias funcionales */
+        DependenciasFuncionales dfs = DependenciasFuncionales.fromString(grupoDfs);
+        Descriptor atributos = Descriptor.fromString(grupoAtributos);
+        
+        return new Relacion(nombre, atributos, dfs);
     }
     
     @Override
