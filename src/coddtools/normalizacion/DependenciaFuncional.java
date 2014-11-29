@@ -97,6 +97,17 @@ public class DependenciaFuncional implements Comparable<DependenciaFuncional> {
         return aux;
     }
     
+    /**
+     * 
+     * @return Devuelve un valor booleano indicando si tanto el determinante como el determinado
+     * de esta relación son subconjuntos del descriptor indicado.
+     */
+    public boolean estaCompuestaPor(final Descriptor descriptor)
+    {
+        return obtenerDeterminante().esContenido(descriptor) && 
+                obtenerDeterminado().esContenido(descriptor);
+    }
+    
     @Override
     public String toString()
     {

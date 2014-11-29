@@ -174,6 +174,25 @@ public class DependenciasFuncionales extends Conjunto<DependenciaFuncional>{
         return esCompleta(df) && df.obtenerDeterminado().esAtributoUnico();
     }
     
+    /**
+     * 
+     * @param descriptor
+     * @return Devuelve un valor booleano indicando si, todas las dependencias funcionales contenidas
+     * en este conjunto, tanto su determinante, como su determinado, son subconjuntos (no estrictos),
+     * del descriptor indicado.
+     */
+    public boolean estanCompuestasPor(final Descriptor descriptor)
+    {
+        Iterator<DependenciaFuncional> it = this.iterator();
+        if(it.hasNext())
+        {
+            DependenciaFuncional df = it.next();
+            while(it.hasNext() && df.estaCompuestaPor(descriptor))
+                df = it.next();
+            return df.estaCompuestaPor(descriptor);
+        }
+        return true;
+    }
     
 
     /* operaciones entre diferentes conjuntos de dependencias funcionales */
