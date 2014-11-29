@@ -314,6 +314,8 @@ public class DependenciasFuncionales extends Conjunto<DependenciaFuncional>{
      */
     public static DependenciasFuncionales fromString(String str) throws IllegalArgumentException
     {
+        if(str.replaceAll(" ", "").isEmpty())
+            return new DependenciasFuncionales();
         String[] tokens = str.split(";");
         DependenciasFuncionales dfs = new DependenciasFuncionales();
         for(String token : tokens)
