@@ -82,6 +82,8 @@ public class Descriptor extends Conjunto<Atributo> implements Comparable<Descrip
     public static Descriptor fromString(String str) throws IllegalArgumentException
     {
         str = str.replaceAll("[ ]+", "");
+        if(str.isEmpty())
+            return new Descriptor(); /* devolver un descriptor vacío si la cadena es vacía */
         String[] tokens = str.split(",");
         /* verificar si los atributos tienen un formato válido */
         for(int i = 0; i != tokens.length; ++i)

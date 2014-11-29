@@ -142,8 +142,11 @@ public class DependenciaFuncional implements Comparable<DependenciaFuncional> {
         String[] tokens = str.split("->");
         if(tokens.length != 2)
             throw new IllegalArgumentException();
-        
-        return new DependenciaFuncional(Descriptor.fromString(tokens[0]), Descriptor.fromString(tokens[1]));
+        Descriptor determinante = Descriptor.fromString(tokens[0]);
+        Descriptor determinado = Descriptor.fromString(tokens[1]);
+        if(determinante.esVacio() || determinado.esVacio())
+            throw new IllegalArgumentException();
+        return new DependenciaFuncional(determinante, determinado);
     }
    
     private final Descriptor determinante, determinado;
