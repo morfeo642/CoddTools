@@ -38,9 +38,19 @@ import java.util.regex.Pattern;
 public class Relacion implements Comparable<Relacion> {
     
     /* Constructor */
+    /**
+     * Constructor.
+     * @param nombre Es el nombre de la relación.
+     * @param atributos Es el conjunto de atributos de la relación
+     * @param dfs Es el conjunto de dependencias funcionales
+     */
     public Relacion(String nombre, Descriptor atributos, DependenciasFuncionales dfs)
     {
-        assert !atributos.esVacio();
+        /* todos los atributos presentes en las dependencias funcionales, deben ser 
+        atributos de la propia relación!
+        */
+        assert !atributos.esVacio() && dfs.estanCompuestasPor(atributos);
+        
         this.atributos = atributos;
         this.dfs = dfs;
         this.nombre = nombre;

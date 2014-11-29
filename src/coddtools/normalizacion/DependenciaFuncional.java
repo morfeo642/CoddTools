@@ -35,11 +35,12 @@ import java.util.Iterator;
 public class DependenciaFuncional implements Comparable<DependenciaFuncional> {
     /**
      * Crea una dependencia funcional x -> y
-     * @param determinante Es el determinante de la dependencia funcional.
-     * @param determinado Es el determinado de la dependencia funcional.
+     * @param determinante Es el determinante de la dependencia funcional. Debe ser un descriptor no vacío.
+     * @param determinado Es el determinado de la dependencia funcional. Debe ser un descriptor no vacío.
      */
     public DependenciaFuncional(final Descriptor determinante, final Descriptor determinado)
     {
+        assert !determinante.esVacio() && !determinado.esVacio();
         this.determinante = determinante;
         this.determinado = determinado;
     }
