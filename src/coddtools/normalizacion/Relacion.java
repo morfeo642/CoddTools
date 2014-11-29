@@ -319,6 +319,11 @@ public class Relacion implements Comparable<Relacion> {
         DependenciasFuncionales dfs = DependenciasFuncionales.fromString(grupoDfs);
         Descriptor atributos = Descriptor.fromString(grupoAtributos);
         
+        if(!dfs.estanCompuestasPor(atributos))
+            throw new IllegalArgumentException(); /* esto ocurre si existe una dependencia
+            funcional que posee algún atributo que no está en el conjunto de atributos de la
+            relación
+        */
         return new Relacion(nombre, atributos, dfs);
     }
     
