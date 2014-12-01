@@ -32,7 +32,7 @@ import java.util.Iterator;
  * relación (el resultado de la misma).
  * @author victor
  */
-class Descomposicion {
+public class Descomposicion {
     /* Constructor */
     /**
      * @note El número de relaciones hijas debe ser mayor o igual a dos.
