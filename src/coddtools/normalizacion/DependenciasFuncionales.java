@@ -123,7 +123,12 @@ public class DependenciasFuncionales extends Conjunto<DependenciaFuncional>{
     public Descriptor obtenerAtributosAjenos(final DependenciaFuncional df)
     {
         assert contiene(df);
-        
+        return _obtenerAtributosAjenos(df);
+    }
+    
+    
+    private Descriptor _obtenerAtributosAjenos(final DependenciaFuncional df)
+    {
         Descriptor determinante = df.obtenerDeterminante();
         if(determinante.esAtributoUnico())
             return null;
@@ -140,7 +145,7 @@ public class DependenciasFuncionales extends Conjunto<DependenciaFuncional>{
        
        if(df.obtenerDeterminado().esContenido(obtenerCierre(subconjunto)))
        {
-           Descriptor aux = obtenerAtributosAjenos(new DependenciaFuncional(subconjunto, df.obtenerDeterminado()));
+           Descriptor aux = _obtenerAtributosAjenos(new DependenciaFuncional(subconjunto, df.obtenerDeterminado()));
            if(aux != null)
                subconjunto.eliminar(aux);
            Descriptor ajenos = new Descriptor();
