@@ -24,7 +24,6 @@
 
 package coddtools.normalizacion;
 
-import coddtools.util.Conjunto;
 import java.util.Iterator;
 
 
@@ -32,7 +31,7 @@ import java.util.Iterator;
  * Representa la forma normal en la que se encuentra una relación determinado( 1FN,2FN,3FN,FNBC,)
  * @author victor
  */
-public abstract class FormaNormal {
+public abstract class FormaNormal implements Comparable<FormaNormal> {
     
     private FormaNormal()
     {
@@ -113,6 +112,13 @@ public abstract class FormaNormal {
     (contendrá a más formas normales) */
     
     
+    
+    /* Orden */
+    @Override
+    public int compareTo(FormaNormal otra)
+    {
+        return nivel - otra.nivel;
+    }
     
     
     /* Formas normales */
